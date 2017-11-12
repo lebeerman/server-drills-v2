@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-
+var app = express();
+app.use(cors());
 const data = [
   {
     id: 1,
@@ -75,9 +76,6 @@ const data = [
     numberOfDogs: 1
   }
 ];
-var app = express();
-app.use(cors());
-
 function getID(array, id) {
   for (var i = 0; i < array.length; i++) {
     if (array[i].id == id){
@@ -86,7 +84,6 @@ function getID(array, id) {
   }
   return false;
 }
-
 app.get("/", function(request, response){
   response.json(data);
 });
@@ -104,6 +101,4 @@ app.get("/:id", function(request, response){
       });
   }
 });
-
-
-app.listen(3000, console.log("RUNNING WITH SCISSORS!!!"));
+app.listen(process.env.PORT || 3000);
