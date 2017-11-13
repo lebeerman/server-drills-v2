@@ -2,6 +2,9 @@ const express = require("express");
 const cors = require("cors");
 var app = express();
 app.use(cors());
+
+app.set('port', (process.env.PORT || 3000);
+
 const data = [
   {
     id: 1,
@@ -101,4 +104,7 @@ app.get("/:id", function(request, response){
       });
   }
 });
-app.listen(process.env.PORT || 3000);
+
+app.listen(app.get('port'), function() {
+  console.log('Node app v2 is running on port', app.get('port'));
+});
